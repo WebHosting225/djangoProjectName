@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" style="min-height: 100%">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <title>{{ title }} | djangoProjectName</title>
+</head>
+<style>
+    * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+</style>
+<body style="height: 100vh; display:flex; flex-direction:column;">
+<header>
+    <h1>Welcome to djangoProjectName</h1>
+    <div style="width: fit-content; margin-inline: auto 0;">
+        <a href={% url 'home' %}>Home</a>
+        {% if user.is_authenticated %}
+            Hi <a href={% url 'dashboard' %}>{{ user.display_name }}</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'signup' %}">Signup</a>
+        {% endif %}
+    </div>
+    <hr/>
+</header>
+
+<div style="flex: 1;">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<footer style="bottom: 0;">
+    <hr/>
+    <h4>Copyright 2022 ©djangoProjectName</h4>
+</footer>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if not user.is_authenticated %}
+        Hello, Guest <a href="{% url 'login' %}">Login</a> To view this page
+    {% else %}
+        Hello, {{ user }}!
+    {% endif %}
+{% endblock %}
